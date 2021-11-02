@@ -1,0 +1,163 @@
+@import './variables';
+@import './mixins';
+@import './fonts';
+@import './components/tabs';
+@import 'components/tables';
+@import 'components/titlebar';
+@import 'components/searchbar';
+@import 'components/card-view';
+@import 'components/sidebar';
+@import 'components/scroller';
+@import 'components/forms';
+
+#root {
+  padding: 0;
+  margin: 0;
+}
+body {
+  padding: 0 !important;
+  margin: 0 !important;
+
+  .wrapper {
+    background-color: $base-color;
+    display: grid;
+    height:calc(100vh - (2 * #{$global-padding-margin}));
+    grid-gap: $global-padding-margin;
+    padding: $global-padding-margin;
+    grid-template-columns: min-content 5fr;
+    grid-template-areas: "sidebar content";
+    grid-template-rows: calc(100vh - (2 * #{$global-padding-margin}));
+
+    .view-wrapper {
+      grid-area: content;
+      display: grid;
+      grid-gap: $global-padding-margin;
+      height:calc(100vh - (2 * #{$global-padding-margin}));
+
+      .bottom-bar {
+        font-family: $primary-font;
+        display: flex;
+        height: 46px;
+        align-items: stretch;
+
+        .filter-box {
+          display: flex;
+          flex-grow: 1;
+          justify-content: space-between;
+          padding: 8px 42px;
+          background-color: $primary-color;
+          border-radius: 0.4rem;
+
+          .filter-button {
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            color: $base-white-dimmed;
+            font-size: 18px;
+          }
+
+          .filter-button.active {
+            color: $base-white;
+          }
+
+          .filter-button:hover {
+            color: $base-white;
+            cursor: pointer;
+          }
+        }
+
+        .manage-button {
+          border: none;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 18px;
+          margin-left: 24px;
+          padding: 8px 24px;
+          background-color: $secondary-color;
+          font-family: $primary-font;
+          color: $base-white;
+          font-weight: 500;
+          box-shadow: none;
+          border-radius: 0.4rem;
+          width: 200px;
+        }
+
+        .manage-button:hover {
+          box-shadow: 0 8px 24px rgba(149, 157, 165, 0.2);
+        }
+      }
+    }
+
+  }
+  .wrapper.condensed {
+    grid-template-columns: 0.25fr 5fr !important;
+  }
+}
+
+.active-shadow {
+  box-shadow: 0 8px 24px rgba(149, 157, 165, 0.2);
+}
+
+.panel-group {
+  margin-top: 12px;
+}
+
+.collapsible-div {
+  font-family: $primary-font;
+
+  .panel-heading {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    .panel-title {
+      font-weight: 500;
+      color: $color-gray-4;
+      letter-spacing: 0.8px;
+      margin-right: 8px;
+    }
+
+    .vertical-rule {
+      height: 2px;
+      background-color: $divider-color;
+      flex-grow: 1;
+    }
+
+    .panel-icon {
+      fill: $color-gray-4;
+      margin-left: 8px;
+    }
+  }
+
+}
+
+.panel-collapse {
+  max-height: 500px;
+  overflow: hidden;
+  transition: max-height .5s ease;
+  display: flex;
+  flex-direction: column;
+}
+.panel-collapse.panel-close {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .5s ease;
+}
+
+.scroller::-webkit-scrollbar {
+  width: 8px;
+  padding: 2px;
+}
+
+.scroller::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 20px;
+}
+
+.scroller::-webkit-scrollbar-thumb {
+  background-color: $divider-color;
+  border-radius: 20px;
+  border: 2px solid transparent;
+}
+

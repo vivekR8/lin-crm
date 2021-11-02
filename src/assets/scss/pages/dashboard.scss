@@ -1,0 +1,189 @@
+@import '../variables';
+@import '../fonts';
+@import '../mixins';
+
+.view-wrapper.dashboard {
+  grid-template-rows: calc(100vh - (2 * #{$global-padding-margin}));
+}
+
+.dashboard-wrapper {
+  display: grid;
+  grid-gap: $global-padding-margin;
+  grid-template-columns: 3fr min-content;
+  grid-template-areas: "details-pane dashboard-overview";
+  flex-grow: 1;
+  overflow: hidden;
+
+  .details-pane {
+    grid-area: details-pane;
+    position: relative;
+    border-radius: 18px;
+    padding: $global-padding-margin $global-padding-margin 0;
+    font-family: $primary-font;
+    overflow: hidden;
+    display: grid;
+
+    .card {
+      background-color: $base-white;
+      border-radius: 12px;
+
+      .card-title {
+        display: flex;
+        align-items: center;
+
+        .card-heading {
+          font-weight: 700;
+          font-size: 24px;
+          letter-spacing: 1px;
+          color: $primary-color-inactive;
+        }
+      }
+
+      .card-body {
+        display: flex;
+        font-family: $primary-font;
+        flex-grow: 1;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: -8px;
+
+
+        .card-subtitle {
+          font-weight: 800;
+          font-size: 40px;
+          color: $primary-color;
+        }
+
+        .card-icon {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 46px;
+          height: 46px;
+          margin-left: 20px;
+
+          .item-icon {
+            fill: $primary-color;
+            width: 40px;
+            height: 40px;
+
+          }
+        }
+      }
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 24px rgba(149, 157, 165, 0.2);
+    }
+  }
+
+  .details-pane.analytics {
+    grid-gap: $global-padding-margin*1.5 0;
+    grid-template-rows: 72px 50% calc(50% - calc(72px + #{$global-padding-margin*3.5}));
+    grid-template-areas: 'header' 'stats-cards' 'list-cards';
+
+    .titlebar-actions {
+      width: 140px !important;
+      margin-left: 12px;
+    }
+
+    .header {
+      grid-area: header;
+    }
+
+    .stats-cards {
+      grid-area: stats-cards;
+      display: grid;
+      grid-gap: 0 $global-padding-margin*1.5;
+      grid-template-columns: 2fr 1fr;
+    }
+
+    .list-cards {
+      grid-area: list-cards;
+      display: grid;
+      grid-gap: 0 $global-padding-margin*1.5;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+
+  .details-pane.operational {
+    grid-gap: $global-padding-margin*1.5 0;
+    grid-template-rows: 72px 18% calc(82% - calc(72px + #{$global-padding-margin*3.5}));
+    grid-template-areas: 'header' 'action-cards' 'list-cards';
+
+    .titlebar-actions {
+      width: 140px !important;
+      margin-left: 12px;
+    }
+
+    .header {
+      grid-area: header;
+    }
+
+    .action-cards {
+      grid-area: action-cards;
+      display: grid;
+      grid-gap: 0 $global-padding-margin*1.5;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+
+
+      .card {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 10px 20px;
+        border: 2px solid $divider-color;
+
+      }
+    }
+
+    .list-cards {
+      grid-area: list-cards;
+      display: grid;
+      grid-gap: 0 $global-padding-margin*1.5;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .dashboard-overview {
+    grid-area: dashboard-overview;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+
+    .operational-details {
+      background-color: $base-white;
+      border-radius: 18px;
+      position: relative;
+      font-family: $primary-font;
+      justify-content: space-between;
+      align-items: center;
+      padding: 78px 16px 16px;
+      flex-grow: 1;
+      margin-bottom: 18px;
+
+      .title-toolbar {
+        display: flex;
+        justify-content: flex-end;
+        position: absolute;
+        right: 16px;
+        top: 16px;
+        left: 16px;
+
+        .titlebar-actions {
+          width: 45%;
+          height: 48px;
+        }
+      }
+    }
+
+    .analytical-details {
+      background-color: $base-white;
+      border-radius: 18px;
+      height: 40%;
+    }
+
+  }
+}
+
